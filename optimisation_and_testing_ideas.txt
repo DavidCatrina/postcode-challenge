@@ -1,0 +1,26 @@
+
+1. When cleaning the post_office_address_df I noticed that there are multiple street addresses for the same postcode? 
+    - Not sure if is outdated: could drop postcode duplicates and keep the fist or the last value
+    - Rewrite the code in such way that it creates an array with all street names and when the script 
+    is checking any of the Address Lines are in STREET_NAME column it itterated trough the array
+2. OPTIMIZATION: 
+    2.1 Instead of using the 're' module to remove numerical values and characters in between, I used pandas' str.replace method with a regex pattern (line 32 replace line 33).
+    2.2 The lambda function and enumerating multiple 'or' conditions can be replaced by pandas' 'isin' method.
+    2.3 Lines 17, 20, 23 can be rewritten under 1 line, but I prefere my initial idea as it can be easier to understand
+    Eg: """
+    post_office_address_unique_df = post_office_address_df[['POSTCODE', 'STREET_NAME']].drop_duplicates().dropna(subset=['STREET_NAME','POSTCODE'])[['POSTCODE']]
+    """
+    2.4 When working with larger datasets
+        2.4.1 we can the "category" data type for categorical column (eg. STREET_NAME)
+        2.4.2 Use the chunksize parameter to process singlificantly larger CSV files in chunks
+    2.5 If we're using the same script for multiple datasets (eg. repetitive task) it would be better to create a class, 
+    use argparse module to specify the datasets in question and use functions
+
+3. TESTING: 
+    3.1 Code review: The code cam be reviewed by other developers, to check for any potential bugs that may not be immediately obvious.
+    3.2 Perform performance testing using large datasets to make sure it runns as efficient as possible
+    3.3 Perform integration testing using different input data and checking the output. (did this while coding)
+    3.4 Perform black box testing and checking the output for some small datasets input.
+
+
+
