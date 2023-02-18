@@ -1,4 +1,5 @@
 
+For address_sorter.py:
 1. When cleaning the post_office_address_df I noticed that there are multiple street addresses for the same postcode? 
     - Not sure if is outdated: could drop postcode duplicates and keep the fist or the last value
     - Rewrite the code in such way that it creates an array with all street names and when the script 
@@ -22,5 +23,12 @@
     3.3 Perform integration testing using different input data and checking the output. (did this while coding)
     3.4 Perform black box testing and checking the output for some small datasets input.
 
-
+For address_sorter_2023-02-18.py:
+1. I've taken another approach to just quickly solve the challenge without any fancy solution (merging). 
+2. To improve the performance I used a more efficient data structure to store the postcode-street mappings from 
+example_abp_data.csv - a dictionary used to store postcode-street mappings with postcode as key and set of streets as values. 
+I guess this can be done after cleaning the example_abp_data.csv dataset also since it will use less memory
+3. Although the solution suggested in this script just itterates trough the street addresses columns of example_input_data.csv 
+might be inneficient for larger datasets, this can be improved is various ways, for eg. using Pandas' read_csv function's chunksize 
+parameter to read the data in chunks instead of all at once.
 
